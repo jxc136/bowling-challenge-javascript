@@ -214,90 +214,105 @@ class BonusRoll{
   // 2 - Scorecard correctly handles scoring for a spare 
 
     const scoreCard = new Scorecard();
-    const frame1 = new Frame(5, 3);
+    const frame1 = new Frame(6, 4);
     frame1.bonusStatus(); // => true
     const frame2 = new Frame(5, 2)
+    scoreCard.add(frame1);
+    scoreCard.add(frame2);
+    scorecard.calculateBonuses();
+    const expectedFrame1 = { roll_one: 6, roll_two: 4, frame_total: 15, is_strike?: false, is_spare?: true, bonus_status: false };
+    const expectedFrame2 = { roll_one: 5, roll_two: 2, frame_total: 7, is_strike?: false, is_spare?: false, bonus_status: false };
+    scoreCard.displayScore(); // => includes expected frame 1 and 2 
+    
+    // 3 - Scorecard correctly calculates a spare into a strike (in isolation)
 
-      scorecard = ScoreCard.new
-      frame1 = Frame.new(6,4) 
-      frame1_total = frame1.frame_total
-      frame2 = Frame.new(5,2) 
-      scorecard.add(frame1_total)
-      scorecard.add(frame2_total)
+    const scoreCard = new Scorecard();
+    const frame1 = new Frame(5, 5);
+    frame1.bonusStatus(); // => true
+    const frame2 = new Frame(10, 0)
+    const frame3 = new Frame(0, 0)
+    scoreCard.add(frame1);
+    scoreCard.add(frame2);
+    scoreCard.add(frame3);
+    scorecard.calculateBonuses();
+    const expectedFrame1 = { roll_one: 5, roll_two: 5, frame_total: 20, is_strike?: false, is_spare?: true, bonus_status: false }
+    const expectedFrame2 = { roll_one: 10, roll_two: 0, frame_total: 10, is_strike?: true, is_spare?: false, bonus_status: false }
+    scoreCard.displayScore(); // => includes expected frame 1 and 2 
 
-      expected_scorecard = {
-        frame_one: 15
-        frame_two: 7
-      }
-      expect(scorecard.total).to include(expected_scoredcard)
-      expect(frame1.is_spare?).to eq true
+    // 4 - Adds no bonus to a gutter frame
 
-    // 2 - Scorecard correctly calculates a spare into a strike (in isolation)
+    const scoreCard = new Scorecard();
+    const frame1 = new Frame(3, 7);
+    frame1.bonusStatus(); // => true
+    const frame2 = new Frame(0, 0)
+    scoreCard.add(frame1);
+    scoreCard.add(frame2);
+    scorecard.calculateBonuses();
+    const expectedFrame1 = { roll_one: 3, roll_two: 7, frame_total: 10, is_strike?: false, is_spare?: true, bonus_status: false };
+    const expectedFrame2 = { roll_one: 0, roll_two: 0, frame_total: 0, is_strike?: false, is_spare?: false, bonus_status: false };
+    scoreCard.displayScore(); // => includes expected frame 1 and 2 
+    
 
-      scorecard = ScoreCard.new
-      frame1 = Frame.new(5,5) 
-      frame1_total = frame1.frame_total
-      frame2 = Frame.new(10,0) 
-      scorecard.add(frame1_total)
-      scorecard.add(frame2_total)
+  // Correctly handles a strike into an open frame
 
-      expected_scorecard = {
-        frame_one: 20
-        frame_two: 10
-      }
-      expect(scorecard.total).to include(expected_scoredcard)
-      expect(frame1.is_spare?).to eq true
+    const scoreCard = new Scorecard();
+    const frame1 = new Frame(10, 0);
+    frame1.bonusStatus(); // => true
+    const frame2 = new Frame(7, 2)
+    scoreCard.add(frame1);
+    scoreCard.add(frame2);
+    scorecard.calculateBonuses();
+    const expectedFrame1 = { roll_one: 10, roll_two: 0, frame_total: 19, is_strike?: true, is_spare?: false, bonus_status: false };
+    const expectedFrame2 = { roll_one: 7, roll_two: 2, frame_total: 9, is_strike?: false, is_spare?: false, bonus_status: false };
+    scoreCard.displayScore(); // => includes expected frame 1 and 2 
+    
+// Correctly handles a strike into a spare
 
-    // 3 - Scorecard correct counts spare into spare (does not care about second spare no.2)
+    const scoreCard = new Scorecard();
+    const frame1 = new Frame(10, 0);
+    frame1.bonusStatus(); // => true
+    const frame2 = new Frame(2, 8)
+    // to not isolate spare score
+    const frame3 = Frame.new(0, 0)
+    scoreCard.add(frame1);
+    scoreCard.add(frame2);
+    scoreCard.add(frame3);
+    scorecard.calculateBonuses();
+    const expectedFrame1 = { roll_one: 10, roll_two: 0, frame_total: 20, is_strike?: true, is_spare?: false, bonus_status: false };
+    const expectedFrame2 = { roll_one: 2, roll_two: 8, frame_total: 10, is_strike?: false, is_spare?: true, bonus_status: false };
+    scoreCard.displayScore(); // => includes expected frame 1 and 2 
 
-      scorecard = ScoreCard.new
-      frame1 = Frame.new(5,5) 
-      frame1_total = frame1.frame_total
-      frame2 = Frame.new(6,4) 
-      scorecard.add(frame1_total)
-      scorecard.add(frame2_total)
-      expected_scorecard = {
-        frame_one: 16
-        frame_two: 10
-      }
-      expect(scorecard.total).to include(expected_scoredcard)
-      expect(frame1.is_spare?).to eq true
+// Correctly handles a strike into strike into an open frame
 
-  // 4 - Spare into a gutter frame
+    const scoreCard = new Scorecard();
+    const frame1 = new Frame(10, 0);
+    const frame2 = new Frame(10, 0)
+    const frame3 = new Frame(3, 4)
+    scoreCard.add(frame1);
+    scoreCard.add(frame2);
+    scoreCard.add(frame3);
+    scorecard.calculateBonuses();
+    const expectedFrame1 = { roll_one: 10, roll_two: 0, frame_total: 23, is_strike?: true, is_spare?: false, bonus_status: false };
+    const expectedFrame2 = { roll_one: 10, roll_two: 0, frame_total: 17, is_strike?: true, is_spare?: false, bonus_status: false };
+     const expectedFrame3 = { roll_one: 3, roll_two: 4, frame_total: 7, is_strike?: false, is_spare?: false, bonus_status: false };
+    scoreCard.displayScore(); // => includes expected frame 1 2 and 3
+    
+  // Correctrly handles three strikes in a row 
 
-    scorecard = ScoreCard.new
-      frame1 = Frame.new(5,5) 
-      frame1_total = frame1.frame_total
-      frame2 = Frame.new(0,0) 
-      scorecard.add(frame1_total)
-      scorecard.add(frame2_total)
-      expected_scorecard = {
-        frame_one: 10
-        frame_two: 0
-      }
-      expect(scorecard.total).to include(expected_scoredcard)
-      expect(frame1.is_spare?).to eq true
+   const scoreCard = new Scorecard();
+    const frame1 = new Frame(10, 0);
+    const frame2 = new Frame(10, 0)
+    const frame3 = new Frame(10, 0)
+    const frame4 = new Frame(0, 0)
+    scoreCard.add(frame1);
+    scoreCard.add(frame2);
+    scoreCard.add(frame3);
+    scoreCard.add(frame4);
+    scorecard.calculateBonuses();
 
-# 1 - Strike into open frame
-
-# 1 - Strike into open frame
-
-# 1 - Strike into open frame
-
-# 1 - Strike into open frame
-
-# 1 - Strike into open frame
-
-# 1 - Strike into open frame
-
-# 1 - Strike into open frame
-
-# 1 - Strike into open frame
-
-# 1 - Strike into open frame
-
-# 1 - Strike into open frame
-
-
-
+    const expectedFrame1 = { roll_one: 10, roll_two: 0, frame_total: 30, is_strike?: true, is_spare?: false, bonus_status: false };
+    const expectedFrame2 = { roll_one: 10, roll_two: 0, frame_total: 20, is_strike?: true, is_spare?: false, bonus_status: false };
+    const expectedFrame3 = { roll_one: 10, roll_two: 0, frame_total: 10, is_strike?: true, is_spare?: false, bonus_status: false };
+    scoreCard.displayScore(); // => includes expected frame 1 2 and 3
+    
 ```
