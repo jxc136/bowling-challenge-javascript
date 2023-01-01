@@ -145,78 +145,22 @@ class ScoreCard {
   }
 }
 
-class Frame
+class BonusRoll{
+  // Handles bonus bonus rolls if the player gets a strike or spare in frame 10
+  constructor(rollOne, rollTwo) {
+    // Monitor the number of pins for each roll
+    this.rollOne = rollOne;
+    this.rollTwo = rollTwo;
+  }
 
-  def initialize(first,second)
+   get rollOne() {
+    return this.rollOne;
+  }
 
-  # Score accumalator monitors score
-  # First roll happens: 
-    # If remaining pins = 0, frame ends, mark strike to true, end frame
-    # Else add result to accumalator
-  # Second roll happens: 
-    #If remaining pins = 0, frame ends, mark spare to true
-    #else add result to accumalator for the frame
-
-# in the progamme:
-
-  # method would take at most two arguments, one for each roll
-    # If first argument = 10, dont expect second argument
-      # Strike and spare caclulation would happen outside of class
-  # Raise error if first + second > 10
-
-  # If first = 10 set strike to 10, return X
-  # If first + second = 10 set spare to true, return /
-  # else return first + second 
-
-
-  
-  end 
-
-  def frame_total
-
-  def is_strike?
-
-  # Mark strike for frame 
-
-  end 
-
-   def is_spare
-
-  # Mark spare
-
-  end 
-end 
-
-
-class Scorecard
-
-  def initialize
-
-  score = (:frame_one, :frame_two, :frame_three, :frame_four, :frame_five, :frame_six, :frame_seven, 
-  :frame_eight, :frame_nine, :frame_ten)
-
-  # @scorecard
-
-  end 
-
-  def total 
-
-  # Return Scorecard
-
-  end
-
-  def add(frame)
-
-  # add total for the frame
-  # check if any unresolved strikes or spares that are effected by the roll
-    # if so, amend results
-
-  end
-
-
-
-
-end 
+  get rollTwo() {
+    return this.rollTwo;
+  }
+}
 
 ```
 
