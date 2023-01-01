@@ -86,6 +86,7 @@ class Frame {
 
   frameTotal() {
     //  Returns total of the frame
+    console.log(this.rollOne + this.rollTwo);
     // Returns error if a single frame exceeds 10 pins 
   }
 
