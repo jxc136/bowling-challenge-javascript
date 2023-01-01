@@ -33,7 +33,12 @@ describe ('Frame', () => {
     expect(frame.bonusStatus()).toEqual (true);
   });
 
+  it ('adds the frame information into an object',() => {
+    const frame = new Frame(10, 0);
+    const expectedFrame = { rollOne: 10, rollTwo: 0, frameTotal: 10, isStrike: true, isSpare: false, bonusStatus: true};
+    expect(frame.frameToObject()).toEqual (expectedFrame);
   
+  })
   
    
 });
