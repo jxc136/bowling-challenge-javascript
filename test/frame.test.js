@@ -19,9 +19,10 @@ describe ('Frame', () => {
 
   it ('identifies a frame with a spare', () => {
     const frame = new Frame(6, 4);
-    expect(frame.isStrike()).toEqual (false)
-    expect(frame.isSpare()).toEqual (true)
-    expect(frame.frameTotal()).toEqual (10)
+    expect(frame.isStrike()).toEqual (false);
+    expect(frame.isSpare()).toEqual (true);
+    expect(frame.frameTotal()).toEqual (10);
+    expect(frame.bonusStatus()).toEqual (true);
   });
 
   it ('identifies a frame with a strike', () => {
@@ -29,6 +30,7 @@ describe ('Frame', () => {
     expect(frame.isStrike()).toEqual (true)
     expect(frame.isSpare()).toEqual (false)
     expect(frame.frameTotal()).toEqual (10)
+    expect(frame.bonusStatus()).toEqual (true);
   });
 
   
