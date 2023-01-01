@@ -23,6 +23,15 @@ describe ('Frame', () => {
     expect(frame.isSpare()).toEqual (true)
     expect(frame.frameTotal()).toEqual (10)
   });
+
+  it ('identifies a frame with a strike', () => {
+    const frame = new Frame(10, 0);
+    expect(frame.isStrike()).toEqual (true)
+    expect(frame.isSpare()).toEqual (false)
+    expect(frame.frameTotal()).toEqual (10)
+  });
+
+  
   
    
 });
