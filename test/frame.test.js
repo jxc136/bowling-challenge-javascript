@@ -1,12 +1,13 @@
+const { describe, it, expect } = require('jest');
 const Frame = require('../lib/frame');
 
 describe ('Frame', () => {
 
   it ('returns a score between 1 and 10', () => {
     const frame = new Frame(1, 5);
-    expect(frame.isStrike()).toEqual(false)
-    expect(frame.isSpare()).toEqual(false)
-    expect(frame.frameTotal()).toEqual(6)
+    expect(frame.isStrike()).toEqual(false);
+    expect(frame.isSpare()).toEqual(false);
+    expect(frame.frameTotal()).toEqual(6);
   });
 
   it ('raises and error if the sum of the frame arguments exceeds 10', () => {
@@ -27,9 +28,9 @@ describe ('Frame', () => {
 
   it ('identifies a frame with a strike', () => {
     const frame = new Frame(10, 0);
-    expect(frame.isStrike()).toEqual (true)
-    expect(frame.isSpare()).toEqual (false)
-    expect(frame.frameTotal()).toEqual (10)
+    expect(frame.isStrike()).toEqual (true);
+    expect(frame.isSpare()).toEqual (false);
+    expect(frame.frameTotal()).toEqual (10);
     expect(frame.bonusStatus()).toEqual (true);
   });
 
