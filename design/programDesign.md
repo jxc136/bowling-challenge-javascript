@@ -166,40 +166,40 @@ class BonusRoll{
 
 ### Test examples 
 
-```Ruby 
+```Javascript
 
-# Score Unit tests:
+// Frame Unit tests:
 
   
-  # 1 - Score must be between 0 - 10
+  // 1 - Score must be between 0 - 10
 
-    frame = Frame.new(1,5) 
-    expect(frame.frame_total).to equal 6
-    expect(frame.is_strike?).to equal false
-    expect(frame.is_spare?).to equal false
+    const frame = new Frame(1, 5);
+    frame.isStrike?(); // => false
+    frame.isSpare?(); // => false
+    ;
 
-  # 2 - Raises error if sum of frame arguments is > 20
-    frame = Frame.New(10,5)
-    expect(frame).to raise_error "invalid score"
+  // 2 - Raises error if sum of frame arguments is > 20
 
-  # 3 Frame is a spare
+    const frame = new Frame(10, 5);
+    frame.frameTotal(); // error: "invalid score"
+    
+    
 
-    frame = Frame.new(6,4) 
-    expect(frame.frame_total).to equal 10
-    expect(frame.is_strike?).to equal false
-    expect(frame.is_spare?).to equal true
+  // 3 Frame is a spare
 
-  # 4 Frame is a Strike 
+    const frame = new Frame(6, 4);
+    frame.frameTotal(); // 10
+    frame.isSpare?(); // true
+    frame.isStrike?(); // false
+    frame.bonusStatus(); // true 
 
-    frame = Frame.new(10,0) 
-    expect(frame.frame_total).to equal 10
-    expect(frame.is_strike?).to equal true 
-    expect(frame.is_spare?).to equal false
+  // 4 Frame is a Strike 
 
-  # 5 Frame does not accept another roll after a strike 
-
-    frame = Frame.new(10,5) 
-    expect(frame).to raise_error "invalid score"
+    const frame = new Frame(6,4); 
+    frame.frameTotal(); // 10
+    frame.isSpare?(); // false
+    frame.isStrike?(); // true
+    frame.bonusStatus(); // true 
 
 # Scorecard integration tests 
 
