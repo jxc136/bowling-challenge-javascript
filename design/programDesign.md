@@ -201,11 +201,22 @@ class BonusRoll{
     frame.isStrike?(); // true
     frame.bonusStatus(); // true 
 
-# Scorecard integration tests 
+// Scorecard integration tests 
 
-  # Spare functionality 
+  // 1 - Frame class objects are correctly added to the score array 
 
-    # 1 - Scorecard correctly calculates a spare into an open frame
+    const scoreCard = new Scorecard();
+    const frame = new Frame(5, 3);
+    scorecard.add(frame);
+    const testScorecard =  { roll_one: 5, roll_two: 3, frame_total: 8, is_strike?: false, is_spare?: false, bonus_status:false }
+    scorecard.displayScore(); // => include testScorecard
+ 
+  // 2 - Scorecard correctly handles scoring for a spare 
+
+    const scoreCard = new Scorecard();
+    const frame1 = new Frame(5, 3);
+    frame1.bonusStatus(); // => true
+    const frame2 = new Frame(5, 2)
 
       scorecard = ScoreCard.new
       frame1 = Frame.new(6,4) 
@@ -221,7 +232,7 @@ class BonusRoll{
       expect(scorecard.total).to include(expected_scoredcard)
       expect(frame1.is_spare?).to eq true
 
-    # 2 - Scorecard correctly calculates a spare into a strike (in isolation)
+    // 2 - Scorecard correctly calculates a spare into a strike (in isolation)
 
       scorecard = ScoreCard.new
       frame1 = Frame.new(5,5) 
@@ -237,7 +248,7 @@ class BonusRoll{
       expect(scorecard.total).to include(expected_scoredcard)
       expect(frame1.is_spare?).to eq true
 
-    # 3 - Scorecard correct counts spare into spare (does not care about second spare no.2)
+    // 3 - Scorecard correct counts spare into spare (does not care about second spare no.2)
 
       scorecard = ScoreCard.new
       frame1 = Frame.new(5,5) 
@@ -252,7 +263,7 @@ class BonusRoll{
       expect(scorecard.total).to include(expected_scoredcard)
       expect(frame1.is_spare?).to eq true
 
-  # 4 - Spare into a gutter frame
+  // 4 - Spare into a gutter frame
 
     scorecard = ScoreCard.new
       frame1 = Frame.new(5,5) 
