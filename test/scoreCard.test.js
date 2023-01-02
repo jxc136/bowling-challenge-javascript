@@ -1,5 +1,6 @@
 const Scorecard = require('../lib/scorecard')
 const Frame = require('../lib/frame');
+const BonusRoll = require('../lib/bonusRoll')
 
 describe ('ScoreCard', () => {
 
@@ -126,6 +127,35 @@ describe ('ScoreCard', () => {
     expect(scoreCard.displayScore()).toContainEqual(expectedFrame2);
     expect(scoreCard.displayScore()).toContainEqual(expectedFrame3);
    
+  })
+
+  it ('correctly handles a spare in the final frame', () => {
+    const scoreCard = new Scorecard();
+    const frame1 = new Frame(0, 0);
+    const frame2 = new Frame(0, 0);
+    const frame3 = new Frame(0, 0);
+    const frame4 = new Frame(0, 0);
+    const frame5 = new Frame(0, 0);
+    const frame6 = new Frame(0, 0);
+    const frame7 = new Frame(0, 0);
+    const frame8 = new Frame(0, 0);
+    const frame9 = new Frame(0, 0);
+    const frame10 = new Frame(0, 10);
+    scoreCard.add(frame1);
+    scoreCard.add(frame2);
+    scoreCard.add(frame3);
+    scoreCard.add(frame4);
+    scoreCard.add(frame5);
+    scoreCard.add(frame6);
+    scoreCard.add(frame7);
+    scoreCard.add(frame8);
+    scoreCard.add(frame9);
+    scoreCard.add(frame10);
+    const bonusRoll = new BonusRoll(7, 0);
+    scoreCard.finalFrameBonus(bonusRoll);
+    const expectedFrame10 = { rollOne: 0, rollTwo: 10, frameTotal: 17, isStrike: false, isSpare: true, bonusStatus: false };
+    expect(scoreCard.displayScore()).toContainEqual(expectedFrame10);
+  
   })
   
 })
