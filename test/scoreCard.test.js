@@ -228,6 +228,36 @@ describe ('ScoreCard', () => {
     expect(scoreCard.finalScore()).toBe(76);
   
   })
+
+  it ('correctly handles a game with strikes and spares', () => {
+    const scoreCard = new Scorecard();
+    const frame1 = new Frame(10, 0);
+    const frame2 = new Frame(7, 3);
+    const frame3 = new Frame(10, 0);
+    const frame4 = new Frame(10, 0);
+    const frame5 = new Frame(5, 5);
+    const frame6 = new Frame(3, 6);
+    const frame7 = new Frame(7, 3);
+    const frame8 = new Frame(2, 4);
+    const frame9 = new Frame(4, 4);
+    const frame10 = new Frame(10, 0);
+    scoreCard.add(frame1);
+    scoreCard.add(frame2);
+    scoreCard.add(frame3);
+    scoreCard.add(frame4);
+    scoreCard.add(frame5);
+    scoreCard.add(frame6);
+    scoreCard.add(frame7);
+    scoreCard.add(frame8);
+    scoreCard.add(frame9);
+    scoreCard.calculateBonuses();
+    scoreCard.add(frame10);
+    const bonusRoll = new BonusRoll(10, 10);
+    scoreCard.finalFrameBonus(bonusRoll);
+    expect(scoreCard.finalScore()).toBe(163);
+  
+  })
+  
   
 })
 
