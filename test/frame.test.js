@@ -1,4 +1,3 @@
-const { describe, it, expect } = require('jest');
 const Frame = require('../lib/frame');
 
 describe ('Frame', () => {
@@ -40,6 +39,4 @@ describe ('Frame', () => {
     expect(frame.frameToObject()).toEqual (expectedFrame);
   
   })
-  
-   
 });
