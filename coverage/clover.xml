@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<coverage generated="1672663841607" clover="3.2.0">
+  <project timestamp="1672663841607" name="All files">
+    <metrics statements="52" coveredstatements="52" conditionals="30" coveredconditionals="30" methods="20" coveredmethods="20" elements="102" coveredelements="102" complexity="0" loc="52" ncloc="52" packages="1" files="3" classes="3"/>
+    <file name="bonusRoll.js" path="/Users/josh/projects/Makers-Week-Six/bowling-challenge-javascript/lib/bonusRoll.js">
+      <metrics statements="5" coveredstatements="5" conditionals="0" coveredconditionals="0" methods="3" coveredmethods="3"/>
+      <line num="5" count="4" type="stmt"/>
+      <line num="6" count="4" type="stmt"/>
+      <line num="10" count="3" type="stmt"/>
+      <line num="14" count="2" type="stmt"/>
+      <line num="17" count="1" type="stmt"/>
+    </file>
+    <file name="frame.js" path="/Users/josh/projects/Makers-Week-Six/bowling-challenge-javascript/lib/frame.js">
+      <metrics statements="17" coveredstatements="17" conditionals="12" coveredconditionals="12" methods="6" coveredmethods="6"/>
+      <line num="6" count="68" type="stmt"/>
+      <line num="7" count="68" type="stmt"/>
+      <line num="11" count="68" type="cond" truecount="2" falsecount="0"/>
+      <line num="12" count="1" type="stmt"/>
+      <line num="15" count="67" type="stmt"/>
+      <line num="20" count="126" type="cond" truecount="2" falsecount="0"/>
+      <line num="21" count="32" type="stmt"/>
+      <line num="23" count="94" type="stmt"/>
+      <line num="28" count="137" type="cond" truecount="4" falsecount="0"/>
+      <line num="29" count="20" type="stmt"/>
+      <line num="31" count="117" type="stmt"/>
+      <line num="38" count="70" type="cond" truecount="4" falsecount="0"/>
+      <line num="39" count="28" type="stmt"/>
+      <line num="41" count="42" type="stmt"/>
+      <line num="49" count="64" type="stmt"/>
+      <line num="58" count="64" type="stmt"/>
+      <line num="62" count="2" type="stmt"/>
+    </file>
+    <file name="scorecard.js" path="/Users/josh/projects/Makers-Week-Six/bowling-challenge-javascript/lib/scorecard.js">
+      <metrics statements="30" coveredstatements="30" conditionals="18" coveredconditionals="18" methods="11" coveredmethods="11"/>
+      <line num="1" count="1" type="stmt"/>
+      <line num="6" count="13" type="stmt"/>
+      <line num="13" count="63" type="stmt"/>
+      <line num="18" count="9" type="stmt"/>
+      <line num="19" count="31" type="cond" truecount="4" falsecount="0"/>
+      <line num="21" count="11" type="stmt"/>
+      <line num="22" count="11" type="stmt"/>
+      <line num="23" count="11" type="cond" truecount="2" falsecount="0"/>
+      <line num="24" count="4" type="stmt"/>
+      <line num="26" count="7" type="stmt"/>
+      <line num="28" count="11" type="stmt"/>
+      <line num="37" count="8" type="stmt"/>
+      <line num="38" count="28" type="cond" truecount="4" falsecount="0"/>
+      <line num="39" count="7" type="stmt"/>
+      <line num="40" count="7" type="stmt"/>
+      <line num="42" count="7" type="stmt"/>
+      <line num="50" count="8" type="stmt"/>
+      <line num="51" count="8" type="stmt"/>
+      <line num="56" count="19" type="stmt"/>
+      <line num="60" count="4" type="cond" truecount="4" falsecount="0"/>
+      <line num="61" count="1" type="stmt"/>
+      <line num="62" count="3" type="cond" truecount="4" falsecount="0"/>
+      <line num="63" count="2" type="stmt"/>
+      <line num="65" count="1" type="stmt"/>
+      <line num="67" count="3" type="stmt"/>
+      <line num="72" count="2" type="stmt"/>
+      <line num="73" count="2" type="stmt"/>
+      <line num="74" count="20" type="stmt"/>
+      <line num="76" count="2" type="stmt"/>
+      <line num="81" count="1" type="stmt"/>
+    </file>
+  </project>
+</coverage>
