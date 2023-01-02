@@ -18,8 +18,7 @@ describe ('ScoreCard', () => {
     scoreCard.add(frame1);
     scoreCard.add(frame2);
     expect(frame1.bonusStatus()).toEqual(true);
-    // scorecard.calculateBonuses();
-    scoreCard.resolveSpare();
+    scoreCard.calculateBonuses();
     const expectedFrame1 = { rollOne: 6, rollTwo: 4, frameTotal: 15, isStrike: false, isSpare: true, bonusStatus: false };
     const expectedFrame2 = { rollOne: 5, rollTwo: 2, frameTotal: 7, isStrike: false, isSpare: false, bonusStatus: false };
     expect(scoreCard.displayScore()).toContainEqual(expectedFrame1);
@@ -36,10 +35,9 @@ describe ('ScoreCard', () => {
     scoreCard.add(frame2);
     scoreCard.add(frame3);
     expect(frame1.bonusStatus()).toEqual(true);
-    // scorecard.calculateBonuses();
-    scoreCard.resolveSpare();
+    scoreCard.calculateBonuses();
     const expectedFrame1 = { rollOne: 5, rollTwo: 5, frameTotal: 20, isStrike: false, isSpare: true, bonusStatus: false };
-    const expectedFrame2 = { rollOne: 10, rollTwo: 0, frameTotal: 10, isStrike: true, isSpare: false, bonusStatus: true };
+    const expectedFrame2 = { rollOne: 10, rollTwo: 0, frameTotal: 10, isStrike: true, isSpare: false, bonusStatus: false };
     expect(scoreCard.displayScore()).toContainEqual(expectedFrame1);
     expect(scoreCard.displayScore()).toContainEqual(expectedFrame2);
    
@@ -51,8 +49,7 @@ describe ('ScoreCard', () => {
     const frame2 = new Frame(0, 0)
     scoreCard.add(frame1);
     scoreCard.add(frame2);
-    // scorecard.calculateBonuses();
-    scoreCard.resolveSpare();
+    scoreCard.calculateBonuses();
     const expectedFrame1 = { rollOne: 3, rollTwo: 7, frameTotal: 10, isStrike: false, isSpare: true, bonusStatus: false };
     const expectedFrame2 = { rollOne: 0, rollTwo: 0, frameTotal: 0, isStrike: false, isSpare: false, bonusStatus: false };
     expect(scoreCard.displayScore()).toContainEqual(expectedFrame1);
@@ -67,8 +64,7 @@ describe ('ScoreCard', () => {
     expect(frame1.bonusStatus()).toEqual(true)
     scoreCard.add(frame1);
     scoreCard.add(frame2);
-    // scorecard.calculateBonuses();
-    scoreCard.resolveStrike();
+    scoreCard.calculateBonuses();
     const expectedFrame1 = { rollOne: 10, rollTwo: 0, frameTotal: 19, isStrike: true, isSpare: false, bonusStatus: false };
     const expectedFrame2 = { rollOne: 7, rollTwo: 2, frameTotal: 9, isStrike: false, isSpare: false, bonusStatus: false };
     expect(scoreCard.displayScore()).toContainEqual(expectedFrame1);
@@ -80,12 +76,12 @@ describe ('ScoreCard', () => {
     const scoreCard = new Scorecard();
     const frame1 = new Frame(10, 0);
     const frame2 = new Frame(2, 8)
+    const frame3 = new Frame(0, 0)
     expect(frame1.bonusStatus()).toEqual(true)
     scoreCard.add(frame1);
     scoreCard.add(frame2);
-    // scorecard.calculateBonuses();
-    scoreCard.resolveStrike();
-    scoreCard.resolveSpare();
+    scoreCard.add(frame3);
+    scoreCard.calculateBonuses();
     const expectedFrame1 = { rollOne: 10, rollTwo: 0, frameTotal: 20, isStrike: true, isSpare: false, bonusStatus: false };
     const expectedFrame2 = { rollOne: 2, rollTwo: 8, frameTotal: 10, isStrike: false, isSpare: true, bonusStatus: false };
     expect(scoreCard.displayScore()).toContainEqual(expectedFrame1);
@@ -101,11 +97,31 @@ describe ('ScoreCard', () => {
     scoreCard.add(frame1);
     scoreCard.add(frame2);
     scoreCard.add(frame3);
-    // scorecard.calculateBonuses();
+    scoreCard.calculateBonuses();
     scoreCard.resolveStrike();
     const expectedFrame1 = { rollOne: 10, rollTwo: 0, frameTotal: 23, isStrike: true, isSpare: false, bonusStatus: false };
     const expectedFrame2 = { rollOne: 10, rollTwo: 0, frameTotal: 17, isStrike: true, isSpare: false, bonusStatus: false };
     const expectedFrame3 = { rollOne: 3, rollTwo: 4, frameTotal: 7, isStrike: false, isSpare: false, bonusStatus: false };
+    expect(scoreCard.displayScore()).toContainEqual(expectedFrame1);
+    expect(scoreCard.displayScore()).toContainEqual(expectedFrame2);
+    expect(scoreCard.displayScore()).toContainEqual(expectedFrame3);
+   
+  })
+
+  it ('correctly handles 3 strikes in a row', () => {
+    const scoreCard = new Scorecard();
+    const frame1 = new Frame(10, 0);
+    const frame2 = new Frame(10, 0);
+    const frame3 = new Frame(10, 0);
+    const frame4 = new Frame(0, 0);
+    scoreCard.add(frame1);
+    scoreCard.add(frame2);
+    scoreCard.add(frame3);
+    scoreCard.add(frame4);
+    scoreCard.calculateBonuses();
+    const expectedFrame1 = { rollOne: 10, rollTwo: 0, frameTotal: 30, isStrike: true, isSpare: false, bonusStatus: false };
+    const expectedFrame2 = { rollOne: 10, rollTwo: 0, frameTotal: 20, isStrike: true, isSpare: false, bonusStatus: false };
+    const expectedFrame3 = { rollOne: 10, rollTwo: 0, frameTotal: 10, isStrike: true, isSpare: false, bonusStatus: false };
     expect(scoreCard.displayScore()).toContainEqual(expectedFrame1);
     expect(scoreCard.displayScore()).toContainEqual(expectedFrame2);
     expect(scoreCard.displayScore()).toContainEqual(expectedFrame3);
