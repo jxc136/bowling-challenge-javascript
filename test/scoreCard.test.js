@@ -157,6 +157,51 @@ describe ('ScoreCard', () => {
     expect(scoreCard.displayScore()).toContainEqual(expectedFrame10);
   
   })
+
+  it ('correctly handles a strike in the final frame', () => {
+    const scoreCard = new Scorecard();
+    const frame1 = new Frame(0, 0);
+    const frame2 = new Frame(0, 0);
+    const frame3 = new Frame(0, 0);
+    const frame4 = new Frame(0, 0);
+    const frame5 = new Frame(0, 0);
+    const frame6 = new Frame(0, 0);
+    const frame7 = new Frame(0, 0);
+    const frame8 = new Frame(0, 0);
+    const frame9 = new Frame(0, 0);
+    const frame10 = new Frame(10, 0);
+    scoreCard.add(frame1);
+    scoreCard.add(frame2);
+    scoreCard.add(frame3);
+    scoreCard.add(frame4);
+    scoreCard.add(frame5);
+    scoreCard.add(frame6);
+    scoreCard.add(frame7);
+    scoreCard.add(frame8);
+    scoreCard.add(frame9);
+    scoreCard.add(frame10);
+    const bonusRoll = new BonusRoll(10, 10);
+    scoreCard.finalFrameBonus(bonusRoll);
+    const expectedFrame10 = { rollOne: 10, rollTwo: 0, frameTotal: 30, isStrike: true, isSpare: false, bonusStatus: false };
+    expect(scoreCard.displayScore()).toContainEqual(expectedFrame10);
+  
+  })
+
+  it ('does not allow early bonuses to be added ', () => {
+    const scoreCard = new Scorecard();
+    const frame1 = new Frame(2, 3);
+    const frame2 = new Frame(3, 4);
+    const frame3 = new Frame(6, 2);
+    scoreCard.add(frame1);
+    scoreCard.add(frame2);
+    scoreCard.add(frame3);
+    const bonusRoll = new BonusRoll(7, 2);
+    try {
+      scoreCard.finalFrameBonus(bonusRoll);
+    } catch (error) {
+      expect(error.message).toBe('bonus rolls can only be added to the 10th frame');
+    };
+  })
   
 })
 
